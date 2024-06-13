@@ -418,6 +418,9 @@ body {
 }
 
 @media (max-width: 480px) {
+    body {
+        touch-action: none; /* Previene el zoom con doble toque */
+    }
     .main__container {
         max-width: 400px;
         margin: auto;
