@@ -167,15 +167,3 @@ const EliminarPedido = () => {
 const Imprimir = () => {
     window.print()
 }
-
-
-// Previene el gesto de zoom con dos dedos
-document.addEventListener('gesturestart', function (e) {
-    e.preventDefault();
-})
-// Previene el zoom mediante toque con múltiples dedos
-document.addEventListener('touchmove', function (e) {
-    if (e.touches.length > 1) {
-        e.preventDefault();
-    }
-}, { passive: false });
