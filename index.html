@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/img/meta/favicon.png" sizes="16x16 32x32 48x48" type="image/png">
+    <title>Rokacito Star</title>
+    <link rel="stylesheet" href="./styles/index.css">
+</head>
+<body>
+    <header>
+        <div class="header__container">
+        </div>
+    </header>
+    <main id="main">
+        <div class="main__container">
+            <section class="productos__main">
+                <div class="productos__container">
+                    <div class="productos__title">
+                        <h2>PRODUCTOS</h2>
+                    </div>
+                    <div id="productos__tipos" class="productos__tipos">
+                        <div class="productos__tipo">
+                            <h3 class="productos__title--tipos">PRENDAS</h3>
+                            <div id="prendas">
+                            </div>
+                        </div class="productos__tipo">
+                        <div class="productos__tipo">
+                            <h3 class="productos__title--tipos">ACCESORIOS</h3>
+                            <div id="accesorios"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="contenido-a-imprimir" class="productos__pedido">
+                <div class="pedido__container">
+                    <div class="pedido__title">
+                        <div class="pedido__cliente">
+                            <p>PEDIDO</p>
+                            <div id="output">Pedro</div>
+                        </div>
+                        <div class="pedido__cliente--boton">
+                            <input id="textInput"  type="text" name="textInput" placeholder="CLIENTE">
+                            <button onclick="printCliente()">Añadir cliente</button>
+                        </div>
+                    </div>
+
+                    <div class="pedido__lista">
+                        <div id="lista__container--pedidos" class="lista__container--pedidos"></div>
+                    </div>
+
+                    <div class="pedido__costo">
+                        <div class="pedido__costo__3cls">
+                            <p class="pedido__total--title">TOTAL:</p>
+                            <div id="pedido__total" class="pedido__total"></div>
+                        </div>
+                        <div class="pedido__costo__3cls">
+                            <div class="pedido__abonado--boton">
+                                <button  onclick="printAbonado()">Abonado => </button>
+                            </div>
+                            <div class="pedido__abonado--input">
+                                <input class="pedido__abonado--input--area" id="abonadoInput"  type="text" name="abonadoInput" placeholder="CANTIDAD">
+                            </div>
+                        </div>
+                        <div class="pedido__costo__3cls">
+                            <p class="pedido__total--deuda">DEUDA:</p>
+                            <div class="pedido__abonado--ouput" id="abonadoOutput">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="botones__imprimir">
+                        <div class="boton__eliminar--pedido">
+                            <button onclick="EliminarPedido()">Eliminar pedido</button>
+                        </div>
+                        <div class="boton__imprimir--pedido">
+                            <button onclick="Imprimir()">imprimir</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="medios__pago">
+                    <h2 class="medios__pago--tile">H BOSS E.I.R.L</h2>
+                    <div class="medios__pago--tipe yape">
+                        <p>YAPE</p>
+                        <input  type="text" name="medios__pago--inputNull--yape" placeholder="908 875 261">
+                    </div>
+                    <div class="medios__pago--tipe plin">
+                        <p class="medios__pago--plin">PLIN</p>
+                        <input  type="text" name="medios__pago--inputNull--plin" placeholder="935 607 990">
+                    </div>
+
+                    <div class="medios__pago--tipe--cuenta bcp">
+                        <div class="cuenta__deposito">
+                            <p>BCP:</p><p>191 422053 3045</p>
+                        </div>
+                        <div class="cuenta__deposito">
+                            <p>CCI:</p><p>002 191 0042205330 4551</p>
+                        </div>
+                    </div>
+
+                    <div class="medios__pago--tipe--cuenta bbva">
+                        <div class="cuenta__deposito">
+                            <p>BBVA:</p><p>001 10484020043 5209</p>
+                        </div>
+                        <div class="cuenta__deposito">
+                            <p>CCI:</p><p>011 484 00020043520 938</p>
+                        </div>
+                    </div>
+                </div>
+
+    </main>
+    <section class="ayuda">
+        <div class="ayuda__container">
+        </div>
+    </section>
+    <script src="./scripts/productos.js"></script>
+    <script src="./scripts/index.js"></script>
+</body>
+
+</html>
+

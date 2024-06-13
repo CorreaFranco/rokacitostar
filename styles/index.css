@@ -1,0 +1,368 @@
+/*  GENERALES  */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+
+/*  HEADER INICIO*/
+.header__container {
+    width: 100%;
+    height: 80px;
+    background-image: url(../img/header/header__line.png);
+    background-size: contain;
+}
+/*  HEADER FIN*/
+
+
+/*  MAIN INICIO*/
+.main__container {
+    max-width: 1200px;
+    margin: auto;
+
+    display: flex;
+    flex-direction: row;
+
+    background-color: #fff;
+
+    border: 1px solid #000;
+}
+.productos__main {
+    width: 60%;
+    padding: 5px;
+
+    border-right: 1px solid #000;
+}
+
+/*  PRODUCTOS INICIO  */
+.productos__container {
+    display: flex;
+    flex-direction: column;
+}
+.productos__title {
+    text-align: center;
+    padding: 10px 0;
+}
+.productos__tipos {
+    display: flex;
+    flex-direction: column;
+}
+.productos__title--tipos {
+    padding: 5px 0;
+}
+.productos__tipo {
+    padding: 10px;
+
+    border-bottom: 1px solid #000;
+}
+.boton__producto {
+    margin: 5px;
+    padding: 5px;
+
+    border-radius: 2px;
+
+    background-color: #fff;
+}
+/*  PRODUCTOS  FIN  */
+
+
+/*  PEDIDO INCIO*/
+.productos__pedido {
+    width: 40%;
+    padding: 5px;
+
+    border-left: 1px solid #000;
+}
+.pedido__container {
+    display: flex;
+    flex-direction: column;
+}
+.pedido__title {
+    display: flex;
+    flex-direction: row;
+
+    border-bottom: 2px solid #000 ;
+
+    padding: 7px;
+
+    margin-bottom: 7px;
+}
+.pedido__cliente {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+.pedido__cliente p {
+    height: 50%;
+    font-size: 25px;
+    font-weight: 600;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pedido__cliente div {
+    height: 50%;
+    font-size: 25px;
+    font-weight: 600;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+.pedido__cliente--boton {
+    width: 50%;
+
+    display: flex;
+    flex-direction: column;
+}
+.pedido__cliente--boton input {
+    height: 50%;
+
+    margin: 5px 0;
+    border: 2px solid #000;
+}
+.pedido__cliente--boton input::placeholder {
+    text-align: center;
+    color: #0f0;
+}
+.pedido__cliente--boton button{
+    height: 50%;
+
+    background-color: #fff;
+}
+.pedido__cliente--boton button:hover {
+    border: 2px solid #0f0;
+    background-color: #0f0;
+}
+/*pedido__Lista*/
+.lista__container--pedidos {
+    display: flex;
+    flex-direction: column;
+
+    padding: 10px;
+
+    border: 1px solid #000;
+}
+.orden {
+    display: flex;
+    flex-direction: row;
+
+    border-bottom: 1px solid #555;
+    padding: 7px 0;
+}
+.orden__title {
+    width: 20%;
+}
+.orden__costo {
+    width: 20%;
+
+    text-align: center;
+}
+.orden__cantidad {
+    width: 20%;
+
+    text-align: center;
+}
+.orden__cantidad--elemento {
+    width: 20%;
+}
+.orden__eliminar {
+    width: 20%;
+
+    display: flex;
+    justify-content: center;
+}
+.orden__eliminar button{
+    width: 50%;
+    color: #fff;
+    background-color: #000;
+}
+.orden__eliminar button:hover {
+    background-color: #f00;
+    border: none;
+    border-radius: 2px;
+    color: #fff;
+}
+/*  PEDIDO FIN*/
+
+
+/* TOTAL INICIO*/
+.pedido__costo {
+    margin: 7px 0;
+    padding: 7px;
+
+    display: flex;
+    flex-direction: column;
+
+    border: 1px solid red;
+}
+.pedido__costo__3cls {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    
+    margin: 10px;
+    padding: 3px 0;
+
+    border-bottom: 2px solid #000;
+}
+.pedido__total--title {
+    width: 80%;
+}
+.pedido__total {
+    width: 20%;
+}
+
+.pedido__abonado--boton {
+    width: 80%;
+}
+.pedido__abonado--boton button{
+    padding: 3px;
+
+    background-color: #fff;
+    border: 2px solid #000;
+}
+.pedido__abonado--boton button:hover {
+    background-color: #0f0;
+    border: 2px solid #0f0;
+
+}
+.pedido__abonado--input {
+    width: 20%;
+}
+.pedido__abonado--input input {
+    width: 50%;
+    padding: 3px;
+
+    border: 2px solid #000;
+}
+.pedido__abonado--input input::placeholder {
+    text-align: center;
+}
+.pedido__abonado--ouput {
+    width: 20%;
+    border: 1px solid green;
+
+}
+.pedido__total--deuda {
+    width: 80%;
+}
+/* TOTAL FIN*/
+
+
+/*  BOTONES IMPRIMIR  */
+.botones__imprimir{
+    width: 100%;
+
+    margin: 10px 0;
+
+    display: flex;
+    flex-direction: row;
+}
+.boton__eliminar--pedido {
+    width: 50%;
+
+    display: flex;
+    justify-content: center;
+}
+.boton__eliminar--pedido button {
+    padding: 15px;
+
+    border-radius: 5px;
+
+    color: #fff;
+    background-color: #000;
+}
+.boton__eliminar--pedido button:hover {
+    color: #fff;
+    background-color: #f00;
+    border: none;
+    border-radius: 2px;
+    color: #fff;
+}
+
+.boton__imprimir--pedido {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+.boton__imprimir--pedido button {
+    padding: 15px;
+
+    border-radius: 5px;
+
+    color: #fff;
+    background-color: #000;
+}
+.boton__imprimir--pedido button:hover {
+    color: #fff;
+    background-color: #f00;
+    border: none;
+    border-radius: 2px;
+    color: #fff;
+}
+/*  BOTONES IMPRIMIR FIN*/
+
+
+
+/*  MEDIOS DE PAGO */
+.medios__pago {
+
+}
+.medios__pago--tipe {
+    display: flex;
+
+    border-bottom: 2px solid #000;
+
+    margin: 5px 0;
+}
+.yape p {
+    width: 40%;
+}
+.yape input {
+    border: none;
+    font-size: 1em;
+}
+.yape input::placeholder {
+    border: 0px solid #fff;
+    text-align: center;
+    color: #000;
+    background-color: #fff;
+}
+.plin p {
+    width: 40%;
+}
+.plin input {
+    border: none;
+    font-size: 1em;
+}
+.plin input::placeholder {
+    border: 0px solid #fff;
+    text-align: center;
+    color: #000;
+    background-color: #fff;
+}
+
+.medios__pago--tipe--cuenta {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    border-bottom: 2px solid #000;
+    margin: 5px;
+}
+.cuenta__deposito {
+    display: flex;
+}
+.cuenta__deposito p {
+    width: 50%;
+}
+
+/*  MEDIOS DE PAGO FIN  */
