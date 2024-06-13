@@ -62,12 +62,19 @@ body {
     border-bottom: 1px solid #000;
 }
 .boton__producto {
+    width: 100px;
+
     margin: 5px;
-    padding: 5px;
+    padding: 7px;
 
     border-radius: 2px;
 
     background-color: #fff;
+
+    border: 2px solid #000;
+}
+.boton__producto:hover {
+    background-color: #0f0;
 }
 /*  PRODUCTOS  FIN  */
 
@@ -226,7 +233,7 @@ body {
     width: 80%;
 }
 .pedido__abonado--boton button{
-    padding: 3px;
+    padding: 5px;
 
     background-color: #fff;
     border: 2px solid #000;
@@ -335,7 +342,7 @@ body {
     margin: 5px 0;
 }
 .yape p {
-    width: 40%;
+    width: 30%;
 }
 .yape input {
     border: none;
@@ -348,7 +355,7 @@ body {
     background-color: #fff;
 }
 .plin p {
-    width: 40%;
+    width: 30%;
 }
 .plin input {
     border: none;
@@ -371,8 +378,8 @@ body {
 .cuenta__deposito {
     display: flex;
 }
-.cuenta__deposito p {
-    width: 50%;
+.cuenta__deposito--entidad  {
+    width: 40%;
 }
 /*  MEDIOS DE PAGO FIN  */
 
