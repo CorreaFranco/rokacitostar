@@ -39,6 +39,7 @@ body {
     border-right: 1px solid #000;
 }
 
+
 /*  PRODUCTOS INICIO  */
 .productos__container {
     display: flex;
@@ -79,6 +80,7 @@ body {
     border-left: 1px solid #000;
 }
 .pedido__container {
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -147,13 +149,13 @@ body {
 
     padding: 10px;
 
-    border: 1px solid #000;
+    border: 2px solid #000;
 }
 .orden {
     display: flex;
     flex-direction: row;
 
-    border-bottom: 1px solid #555;
+    border-bottom: 2px solid #000;
     padding: 7px 0;
 }
 .orden__title {
@@ -200,7 +202,7 @@ body {
     display: flex;
     flex-direction: column;
 
-    border: 1px solid red;
+    border: 2px solid red;
 }
 .pedido__costo__3cls {
     width: 100%;
@@ -248,13 +250,12 @@ body {
 }
 .pedido__abonado--ouput {
     width: 20%;
-    border: 1px solid green;
-
 }
 .pedido__total--deuda {
     width: 80%;
 }
 /* TOTAL FIN*/
+
 
 
 /*  BOTONES IMPRIMIR  */
@@ -265,6 +266,10 @@ body {
 
     display: flex;
     flex-direction: row;
+
+    border: 2px solid #f00;
+    padding: 7px;
+    
 }
 .boton__eliminar--pedido {
     width: 50%;
@@ -287,7 +292,6 @@ body {
     border-radius: 2px;
     color: #fff;
 }
-
 .boton__imprimir--pedido {
     width: 50%;
     display: flex;
@@ -303,7 +307,7 @@ body {
 }
 .boton__imprimir--pedido button:hover {
     color: #fff;
-    background-color: #f00;
+    background-color: #0f0;
     border: none;
     border-radius: 2px;
     color: #fff;
@@ -314,7 +318,14 @@ body {
 
 /*  MEDIOS DE PAGO */
 .medios__pago {
+    width: 100%;
+    margin: 7px 0;
+    padding: 5px;
 
+    border: 2px solid #000;
+}
+.medios__pago--tile {
+    text-align: center;
 }
 .medios__pago--tipe {
     display: flex;
@@ -349,7 +360,6 @@ body {
     color: #000;
     background-color: #fff;
 }
-
 .medios__pago--tipe--cuenta {
     width: 100%;
     display: flex;
@@ -364,5 +374,60 @@ body {
 .cuenta__deposito p {
     width: 50%;
 }
-
 /*  MEDIOS DE PAGO FIN  */
+
+
+
+@media (max-width: 768px) {
+    .main__container {
+        max-width: 700px;
+        margin: auto;
+    
+        display: flex;
+        flex-direction: column;
+    }
+    /*  BOTONES  */
+    .productos__main {
+        width: 100%;
+    }
+    /*  PEDIDO  */
+    .productos__pedido {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+    }
+    .pedido__container {
+        width: 50%;
+    }
+    .medios__pago {
+        width: 50% ;
+    }
+}
+
+@media (max-width: 480px) {
+    .main__container {
+        max-width: 400px;
+        margin: auto;
+    
+        display: flex;
+        flex-direction: column;
+    }
+    /*  BOTONES  */
+    .productos__main {
+        width: 100%;
+        background-color: aqua;
+    }
+    /*  PEDIDO  */
+    .productos__pedido {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .pedido__container {
+        width: 100%;
+    }
+    .medios__pago {
+        padding-left: 5%;
+        width: 100% ;
+    }
+}
