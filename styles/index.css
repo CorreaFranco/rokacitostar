@@ -31,7 +31,7 @@ body {
 
     background-color: #fff;
 
-    border: 1px solid #000;
+    border: 2spx solid #000;
 }
 .productos__main {
     width: 50%;
@@ -119,8 +119,10 @@ body {
 }
 .pedido__cliente div {
     height: 50%;
+
     font-size: 25px;
     font-weight: 600;
+    text-align: center;
 
     display: flex;
     justify-content: center;
@@ -415,6 +417,10 @@ body {
     }
 
     /*  PEDIDO INCIO*/
+    .pedido__cliente div {
+        font-size: 15px;
+        font-weight: 600;
+    }
 .pedido__cliente p {
     font-size: 20px;
 }
