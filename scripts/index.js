@@ -164,6 +164,8 @@ const EliminarPedido = () => {
 }
 
 // IMPRIME LA PAGINA
-const Imprimir = () => {
-    window.print()
-}
+$(document).ready(() => {
+    $('#imprimir').click(function() {
+        $.print('#contenido-a-imprimir');
+    });
+});
