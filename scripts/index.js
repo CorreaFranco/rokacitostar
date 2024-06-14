@@ -67,9 +67,9 @@ const ActulizarImpresionLista = () => {
                 ${(element.cantidad * element.price)}
             </div>
             <div class="orden__eliminar">
-            <button onclick="EliminarOrden(${element.id})">
-                x
-            </button>
+                <button onclick="EliminarOrden(${element.id})">
+                    x
+                </button>
             </div>
         </div>
         `

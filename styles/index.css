@@ -97,16 +97,19 @@ body {
     display: flex;
     flex-direction: row;
 
-    border-bottom: 2px solid #000 ;
-
-    padding: 7px;
-
+    padding: 5px;
     margin-bottom: 7px;
+
+    border-bottom: 2px solid #000 ;
 }
 .pedido__cliente {
     width: 50%;
+
+    padding-right: 5px;
+
     display: flex;
     flex-direction: column;
+
 }
 .pedido__cliente p {
     height: 50%;
@@ -128,6 +131,8 @@ body {
 }
 .pedido__cliente--boton {
     width: 50%;
+
+    padding-left: 5px;
 
     display: flex;
     flex-direction: column;
@@ -400,5 +405,126 @@ body {
 }
 
 @media (max-width: 480px) {
-    
+    header {
+        display: none;
+    }
+    .productos__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(70px,1fr));
+        gap: 5px;
+    }
+    .boton__producto {
+        border: 1px solid #000;
+    }
+
+    /*  PEDIDO INCIO*/
+.pedido__cliente p {
+    font-size: 20px;
+}
+/*pedido__Lista*/
+.lista__container--pedidos {
+    padding: 5px;
+}
+.orden {
+    width: 100%;
+    padding: 5px 0;
+}
+.orden__title {
+    width: 30%;
+}
+.orden__costo {
+    width: 20%;
+}
+.orden__cantidad {
+    width: 10%;
+}
+.orden__cantidad--elemento {
+    width: 20%;
+}
+.orden__eliminar {
+    width: 20%;
+}
+/*  PEDIDO FIN*/
+
+/* TOTAL INICIO*/
+.pedido__costo {
+    margin: 5px 0;
+    padding: 5px 0;
+}
+.pedido__costo__3cls {
+    margin: 0;
+    padding: 5px ;
+
+    border-bottom: 2px solid #000;
+}
+.pedido__abonado--input input {
+    width: 100%;
+}
+.pedido__abonado--input input::placeholder {
+    text-align: center;
+}
+/* TOTAL FIN*/
+/*  BOTONES IMPRIMIR  */
+.botones__imprimir{
+    margin: 5px 0;
+}
+.boton__eliminar--pedido {
+    width: 50%;
+}
+.boton__eliminar--pedido button {
+    padding: 5px;
+}
+.boton__imprimir--pedido button {
+    padding: 0 10px;
+}
+/*  BOTONES IMPRIMIR FIN*/
+
+/*  MEDIOS DE PAGO */
+.medios__pago {
+    margin: 5px 0;
+    padding: 5px;
+}
+.medios__pago--tile {
+    text-align: center;
+    font-size: 18px;
+}
+.medios__pago--tipe {
+    display: flex;
+}
+
+.yape p {
+    width: 40%;
+}
+.yape input {
+    width: 60%;
+    font-size: 18px;
+}
+.plin p {
+    width: 40%;
+}
+.plin input {
+    width: 60%;
+    font-size: 18px;
+}
+.medios__pago--tipe--cuenta {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    margin: 5px;
+}
+.cuenta__deposito {
+    border-bottom: 1px solid #000;
+}
+.cuenta__deposito--entidad  {
+    width: 30%;
+}
+.cuenta__deposito--entidad--cii {
+    width: 70%;
+    font-size: 18px;
+    text-rendering: auto;
+}
+/*  MEDIOS DE PAGO FIN  */
+
+
 }
