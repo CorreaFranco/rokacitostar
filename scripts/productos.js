@@ -11,8 +11,8 @@ class Producto {
 
 let prendas = [];
 let accesorios = [];
-let nombresPrendas = ["prenda", "prenda", "prenda", "prenda", "prenda", "prenda", "prenda", "prenda", "prenda", "prenda", "prenda", "prenda", "prenda"];
-let nombresAccesorios = ["accesorio", "accesorio", "accesorio", "accesorio", "accesorio", "accesorio", "accesorio", "accesorio", "accesorio"];
+let nombresPrendas = ["prenda  :", "prenda", "prenda", "prenda", "prenda", "prenda", "prenda", "prenda", "prenda", "prenda", "prenda", "prenda", "prenda"];
+let nombresAccesorios = ["accesorio  :", "accesorio", "accesorio", "accesorio", "accesorio", "accesorio", "accesorio", "accesorio", "accesorio"];
 let preciosPrendas = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65];
 let preciosAccesorios = [5, 10, 15, 20, 25, 30, 35, 40, 45];
 

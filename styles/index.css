@@ -33,7 +33,7 @@ body {
     border: 1px solid #000;
 }
 .productos__main {
-    width: 60%;
+    width: 50%;
     padding: 5px;
 
     border-right: 1px solid #000;
@@ -61,10 +61,12 @@ body {
 
     border-bottom: 1px solid #000;
 }
+.productos__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px,1fr));
+    gap: 10px;
+}
 .boton__producto {
-    width: 100px;
-
-    margin: 5px;
     padding: 7px;
 
     border-radius: 2px;
@@ -81,7 +83,7 @@ body {
 
 /*  PEDIDO INCIO*/
 .productos__pedido {
-    width: 40%;
+    width: 50%;
     padding: 5px;
 
     border-left: 1px solid #000;
@@ -392,54 +394,11 @@ body {
 
 
 @media (max-width: 768px) {
-    .main__container {
-        max-width: 700px;
-        margin: auto;
-    
-        display: flex;
-        flex-direction: column;
-    }
-    /*  BOTONES  */
-    .productos__main {
-        width: 100%;
-    }
-    /*  PEDIDO  */
-    .productos__pedido {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-    }
-    .pedido__container {
-        width: 50%;
-    }
-    .medios__pago {
-        width: 50% ;
+    .boton__producto {
+        padding: 5px;
     }
 }
 
 @media (max-width: 480px) {
-    .main__container {
-        max-width: 400px;
-        margin: auto;
     
-        display: flex;
-        flex-direction: column;
-    }
-    /*  BOTONES  */
-    .productos__main {
-        width: 100%;
-    }
-    /*  PEDIDO  */
-    .productos__pedido {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-    }
-    .pedido__container {
-        width: 100%;
-    }
-    .medios__pago {
-        padding-left: 5%;
-        width: 100% ;
-    }
 }
