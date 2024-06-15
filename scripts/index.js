@@ -163,9 +163,27 @@ const EliminarPedido = () => {
     }
 }
 
+
+const marcaAgua = () => {
+    document.getElementById('imprimir').addEventListener('click', function() {
+        let section = document.getElementById('toggleSection');
+        if (section.classList.contains('hidden')) {
+            section.classList.remove('hidden');
+        } else {
+            section.classList.add('hidden');
+        }
+    });
+}
+
+
 // IMPRIME LA PAGINA
 $(document).ready(() => {
+    marcaAgua()
+    let prueba = document.getElementById("prueba")
     $('#imprimir').click(function() {
         $.print('#contenido-a-imprimir');
     });
+    marcaAgua()
 });
+
+
