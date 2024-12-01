@@ -1,189 +1,164 @@
-// AREA DE PRODUCTOS
-// CREA BOTON PEDIDO
+// ==========================
+// VARIABLES GLOBALES
+// ==========================
+// Contenedores del DOM
+const lista = document.getElementById("lista__container--pedidos"); // Área donde se imprimen los pedidos
+const idCostoTotal = document.getElementById("pedido__total"); // Contenedor del costo total
+const abonadoOutput = document.getElementById("abonadoOutput"); // Contenedor para mostrar el abono o deuda
+
+// Datos globales
+let pedido = []; // Array para almacenar los productos seleccionados
+let costoTotal = 0; // Costo total del pedido
+let abonado = 0; // Monto abonado por el cliente
+let deuda = 0; // Diferencia entre el costo total y el monto abonado
+
+// Contadores para estadísticas
+let totalPrendasCantidad = 0; // Total de unidades de prendas seleccionadas
+let totalTiposPrendas = 0; // Total de tipos diferentes de prendas seleccionadas
+
+// ==========================
+// FUNCIONES REUTILIZABLES
+// ==========================
+
+// Crear botón para cada producto
 const crearBoton = producto => {
     return `
-    <button id="${producto.id}" class="boton__producto" onclick="pedirProductos(${producto.id})" >${producto.title}: ${producto.price}</button>
+    <button id="${producto.id}" class="boton__producto" onclick="pedirProductos(${producto.id})">
+        ${producto.title}: ${producto.price}
+    </button>
     `;
-}
+};
 
-// IMPRIME BOTONES
+// Imprimir botones de productos en la sección correspondiente
 const imprimirBotones = (arrayOfProducts, idSelector) => {
     let productsTemplate = "";
-    for (element of arrayOfProducts) {
-        productsTemplate = productsTemplate + crearBoton(element);
+    for (const element of arrayOfProducts) {
+        productsTemplate += crearBoton(element);
     }
     const productsSelector = document.getElementById(idSelector);
     productsSelector.innerHTML = productsTemplate;
-}
-imprimirBotones (prendas, "prendas");
-imprimirBotones (accesorios, "accesorios");
+};
 
-
-
-// AREA DE PEDIDO
-// ID LISTA DE PEDIDOS
-const  lista = document.getElementById("lista__container--pedidos");
-
-// ID COSTO TOTAL
-const idCostoTotal = document.getElementById("pedido__total")
-
-// ID ABONADO OUPUT
-const abonadoOutput = document.getElementById("abonadoOutput");
-
-// ARRAY DE PEDIDOS
-let pedido = [];
-
-// COSTO TOTAL DEL PEDIDO
-let costoTotal = 0;
-
-// ABONADO
-let abonado = 0;
-
-// DEUDA
-let deuda = 0
-
-
-// PONER CLIENTE
-const printCliente = () => {
-    let textInput = document.getElementById("textInput").value;
-    let output = document.getElementById("output");
-    output.textContent = textInput;
-}
-// ACTUALIZAR LISTA
-const ActulizarImpresionLista = () => {
-    const crearPedido = () => {
-        return `
+// Actualizar la lista de pedidos en el DOM
+const actualizarImpresionLista = () => {
+    let listaDePedidos = pedido.map(element => `
         <div class="orden">
-            <div class="orden__title">
-                ${element.title}:
-            </div>
-            <div class="orden__costo">
-                ${element.price}
-            </div>
-            <div class="orden__cantidad">
-                ${element.cantidad}
-            </div>
-            <div class="orden__cantidad--elemento">
-                ${(element.cantidad * element.price)}
-            </div>
+            <div class="orden__title">${element.title}:</div>
+            <div class="orden__costo">${element.price}</div>
+            <div class="orden__cantidad">${element.cantidad}</div>
+            <div class="orden__cantidad--elemento">${element.cantidad * element.price}</div>
             <div class="orden__eliminar">
-                <button onclick="EliminarOrden(${element.id})">
-                    x
-                </button>
+                <button onclick="EliminarOrden(${element.id})">x</button>
             </div>
         </div>
-        `
-    }
-    let listaDePedidos = "";
-    for (element of pedido) {
-        listaDePedidos = listaDePedidos +  crearPedido(element);
-    }
-    lista.innerHTML = listaDePedidos;
-}
-// IMPRIME PRODUCTO
-const pedirProductos = (id) => {
-    // Busca el producto en productos
+    `).join(""); // Combinar todos los elementos en un solo string
+    lista.innerHTML = listaDePedidos; // Actualizar el contenido de la lista
+};
+
+// ==========================
+// FUNCIONES PRINCIPALES
+// ==========================
+
+// Agregar producto al pedido
+const pedirProductos = id => {
     productos.forEach(element => {
         if (element.id === id.toString()) {
-            // Busca si ya hay un producto igual en pedido
-            const exists = pedido.some(element => element.id === id.toString());
+            const exists = pedido.some(p => p.id === id.toString());
+
             if (!exists) {
-                pedido.push(element);                    
-
-                element.cantidad++
-
-                ActulizarImpresionLista()
-
-                // Actulizar costoTotal
-                costoTotal += element.price
-                idCostoTotal.innerHTML = costoTotal
+                // Si el producto no está en el pedido, agregarlo
+                pedido.push(element);
+                element.cantidad++;
+                totalTiposPrendas++; // Incrementar el total de tipos de prendas
+                totalPrendasCantidad++; // Incrementar el total de prendas
             } else {
-            element.cantidad++
+                // Si ya está, solo incrementar la cantidad
+                element.cantidad++;
+                totalPrendasCantidad++; // Incrementar el total de prendas
+            }
 
-            ActulizarImpresionLista()
+            // Actualizar costos
+            costoTotal += element.price;
+            deuda = costoTotal - abonado;
 
-            //Actualiza el costoTotal
-            costoTotal += element.price
-            idCostoTotal.innerHTML = costoTotal
-
-            };
-
-            // ACTUALIZA A DEUDA
-            deuda = costoTotal - abonado
+            // Actualizar el DOM
+            actualizarImpresionLista();
+            idCostoTotal.innerHTML = costoTotal;
             abonadoOutput.textContent = deuda;
-        };
-    })
-}
-// ELIMINAR ORDEN
-const EliminarOrden = (id) => {
-    pedido.forEach(element => {
-        if(element.id === id.toString() && element.cantidad > 1){
-            element.cantidad--
-            ActulizarImpresionLista()
-            costoTotal -= element.price
-            idCostoTotal.innerHTML = costoTotal
-        } else if(element.id === id.toString() && element.cantidad === 1){
-            element.cantidad--
-            costoTotal -= element.price
-            idCostoTotal.innerHTML = costoTotal
-            let indice = pedido.indexOf(element)
-            pedido.splice(indice,1)
-            ActulizarImpresionLista()
-        }
-    })
-    deuda = costoTotal - abonado
-    abonadoOutput.textContent = deuda;
-}
-// PONER ABONO
-const printAbonado = () => {
-    let textInput = document.getElementById("abonadoInput").value;
-    // Filtrar solo números
-    let numericInput = textInput.replace(/\D/g, '');
-
-    // LIMPIA ABONADO
-    abonado = 0
-
-    // COSTO TOTAL
-    if (costoTotal <= 0) {
-        let mensaje = "ERROR"
-        abonadoOutput.textContent = mensaje;
-    } else {
-        abonado = numericInput
-        deuda = costoTotal - abonado
-        abonadoOutput.textContent = deuda;
-    }
-}
-// REINICIA LA PAGINA
-const EliminarPedido = () => {
-    let userConfirmed = confirm("¿Deseas realizar esta acción?");
-    if (userConfirmed) {
-        location.reload();
-    } else {
-        
-    }
-}
-
-
-const marcaAgua = () => {
-    document.getElementById('imprimir').addEventListener('click', function() {
-        let section = document.getElementById('toggleSection');
-        if (section.classList.contains('hidden')) {
-            section.classList.remove('hidden');
-        } else {
-            section.classList.add('hidden');
+            document.getElementById("cantidad__pedido").innerHTML = totalPrendasCantidad;
+            document.getElementById("cantidad__tipo__prenda").innerHTML = totalTiposPrendas;
         }
     });
-}
+};
 
+// Eliminar un producto del pedido
+const EliminarOrden = id => {
+    pedido.forEach((element, index) => {
+        if (element.id === id.toString()) {
+            if (element.cantidad > 1) {
+                element.cantidad--;
+                totalPrendasCantidad--;
+            } else {
+                totalTiposPrendas--;
+                totalPrendasCantidad--;
+                pedido.splice(index, 1); // Eliminar producto del array
+            }
+            costoTotal -= element.price;
+        }
+    });
 
-// IMPRIME LA PAGINA
+    // Actualizar deuda y DOM
+    deuda = costoTotal - abonado;
+    idCostoTotal.innerHTML = costoTotal;
+    abonadoOutput.textContent = deuda;
+    actualizarImpresionLista();
+    document.getElementById("cantidad__pedido").innerHTML = totalPrendasCantidad;
+    document.getElementById("cantidad__tipo__prenda").innerHTML = totalTiposPrendas;
+};
+
+// Registrar el cliente
+const printCliente = () => {
+    const textInput = document.getElementById("textInput").value;
+    const output = document.getElementById("output");
+    output.textContent = textInput;
+};
+
+// Registrar abono y calcular deuda
+const printAbonado = () => {
+    const textInput = document.getElementById("abonadoInput").value;
+    const numericInput = textInput.replace(/\D/g, ""); // Filtrar solo números
+
+    if (costoTotal <= 0) {
+        abonadoOutput.textContent = "ERROR";
+    } else {
+        abonado = parseInt(numericInput) || 0;
+        deuda = costoTotal - abonado;
+        abonadoOutput.textContent = deuda;
+    }
+};
+
+// Reiniciar página
+const EliminarPedido = () => {
+    if (confirm("¿Deseas realizar esta acción?")) {
+        location.reload();
+    }
+};
+
+// ==========================
+// INICIALIZACIONES
+// ==========================
+
+// Inicializar botones
+imprimirBotones(prendas, "prendas");
+imprimirBotones(accesorios, "accesorios");
+
+// Inicializar contadores
+document.getElementById("cantidad__pedido").innerHTML = totalPrendasCantidad;
+document.getElementById("cantidad__tipo__prenda").innerHTML = totalTiposPrendas;
+
+// Manejar impresión (requiere jQuery)
 $(document).ready(() => {
-    marcaAgua()
-    let prueba = document.getElementById("prueba")
     $('#imprimir').click(function() {
         $.print('#contenido-a-imprimir');
     });
-    marcaAgua()
 });
-
-

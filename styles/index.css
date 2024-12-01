@@ -245,6 +245,26 @@ body {
 
     border: 2px solid red;
 }
+.pedido__titulos {
+    width: 100%;
+
+    margin: 10px;
+    padding: 3px 0;
+
+    display: flex;
+}
+.pedido__titulos .titulo__1 {
+    width: 40%;
+    font-size: 10px;
+}
+.pedido__titulos .titulo__2 {
+    width: 30%;
+    font-size: 10px;
+}
+.pedido__titulos .titulo__3 {
+    width: 30%;
+    font-size: 10px;
+}
 .pedido__costo__3cls {
     width: 100%;
 
@@ -257,12 +277,14 @@ body {
     border-bottom: 2px solid #000;
 }
 .pedido__total--title {
-    width: 80%;
+    width: 40%;
+}
+.cantidad__pedido {
+    width: 30%;
 }
 .pedido__total {
-    width: 20%;
+    width: 30%;
 }
-
 .pedido__abonado--boton {
     width: 80%;
 }
