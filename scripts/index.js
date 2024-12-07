@@ -1,131 +1,120 @@
 // ==========================
 // VARIABLES GLOBALES
 // ==========================
-// Contenedores del DOM
-const lista = document.getElementById("lista__container--pedidos"); // Área donde se imprimen los pedidos
-const idCostoTotal = document.getElementById("pedido__total"); // Contenedor del costo total
-const abonadoOutput = document.getElementById("abonadoOutput"); // Contenedor para mostrar el abono o deuda
+const lista = document.getElementById("lista__container--pedidos");
+const idCostoTotal = document.getElementById("pedido__total");
+const abonadoOutput = document.getElementById("abonadoOutput");
 
-// Datos globales
-let pedido = []; // Array para almacenar los productos seleccionados
-let costoTotal = 0; // Costo total del pedido
-let abonado = 0; // Monto abonado por el cliente
-let deuda = 0; // Diferencia entre el costo total y el monto abonado
+let pedido = [];
+let costoTotal = 0;
+let abonado = 0;
+let deuda = 0;
 
-// Contadores para estadísticas
-let totalPrendasCantidad = 0; // Total de unidades de prendas seleccionadas
+let totalPrendasCantidad = 0;
 
 // ==========================
 // FUNCIONES REUTILIZABLES
 // ==========================
 
-// Crear botón para cada producto
-const crearBoton = producto => {
-    return `
+const calcularCantidadTotal = () => pedido.reduce((total, item) => total + item.cantidad, 0);
+
+const crearBoton = producto => `
     <button id="${producto.id}" class="boton__producto" onclick="pedirProductos(${producto.id})">
         ${producto.title} ${producto.price}
     </button>
-    `;
-};
+`;
 
-// Imprimir botones de productos en la sección correspondiente
 const imprimirBotones = (arrayOfProducts, idSelector) => {
-    let productsTemplate = "";
-    for (const element of arrayOfProducts) {
-        productsTemplate += crearBoton(element);
-    }
     const productsSelector = document.getElementById(idSelector);
-    productsSelector.innerHTML = productsTemplate;
+    productsSelector.innerHTML = arrayOfProducts.map(crearBoton).join("");
 };
 
-// Actualizar la lista de pedidos en el DOM
 const actualizarImpresionLista = () => {
-    let listaDePedidos = pedido.map(element => `
-        <div class="orden">
-            <div class="orden__title">${element.title}:</div>
-            <div class="orden__costo">${element.price}</div>
-            <div class="orden__cantidad">${element.cantidad}</div>
-            <div class="orden__cantidad--elemento">${element.cantidad * element.price}</div>
-            <div class="orden__eliminar">
-                <button onclick="EliminarOrden(${element.id})">x</button>
+    lista.innerHTML = pedido
+        .map(element => `
+            <div class="orden">
+                <div class="orden__title">${element.title}:</div>
+                <div class="orden__costo">${element.price}</div>
+                <div class="orden__cantidad">${element.cantidad}</div>
+                <div class="orden__cantidad--elemento">${element.cantidad * element.price}</div>
+                <div class="orden__eliminar">
+                    <button onclick="EliminarOrden(${element.id})">x</button>
+                </div>
             </div>
-        </div>
-    `).join(""); // Combinar todos los elementos en un solo string
-    lista.innerHTML = listaDePedidos; // Actualizar el contenido de la lista
+        `)
+        .join("");
 };
 
 // ==========================
 // FUNCIONES PRINCIPALES
 // ==========================
 
-// Agregar producto al pedido
 const pedirProductos = id => {
     productos.forEach(element => {
         if (element.id === id.toString()) {
             const exists = pedido.some(p => p.id === id.toString());
 
             if (!exists) {
-                // Si el producto no está en el pedido, agregarlo
-                pedido.push(element);
-                element.cantidad++;
-                totalPrendasCantidad++; // Incrementar el total de prendas
+                pedido.push({ ...element, cantidad: 1 });
             } else {
-                // Si ya está, solo incrementar la cantidad
-                element.cantidad++;
-                totalPrendasCantidad++; // Incrementar el total de prendas
+                const producto = pedido.find(p => p.id === id.toString());
+                producto.cantidad++;
             }
 
-            // Actualizar costos
             costoTotal += element.price;
             deuda = costoTotal - abonado;
 
-            // Actualizar el DOM
+            totalPrendasCantidad = calcularCantidadTotal();
+
             actualizarImpresionLista();
-            idCostoTotal.innerHTML = costoTotal;
-            abonadoOutput.textContent = deuda;
-            document.getElementById("cantidad__pedido").innerHTML = totalPrendasCantidad;
+            idCostoTotal.textContent = costoTotal.toFixed(2);
+            abonadoOutput.textContent = deuda.toFixed(2);
+            document.getElementById("cantidad__pedido").textContent = totalPrendasCantidad;
         }
     });
 };
 
-// Eliminar un producto del pedido
 const EliminarOrden = id => {
     pedido.forEach((element, index) => {
         if (element.id === id.toString()) {
             if (element.cantidad > 1) {
+                // Reducir la cantidad si hay más de una unidad
                 element.cantidad--;
-                totalPrendasCantidad--;
+                costoTotal -= element.price; // Restar el precio solo de una unidad
+                totalPrendasCantidad--; // Reducir la cantidad total de prendas
             } else {
-                totalPrendasCantidad--;
-                pedido.splice(index, 1); // Eliminar producto del array
+                // Si solo hay una unidad, eliminar el producto del pedido
+                pedido.splice(index, 1);
+                costoTotal -= element.price;
+                totalPrendasCantidad--; // Reducir la cantidad total de prendas
             }
-            costoTotal -= element.price;
         }
     });
 
-    // Actualizar deuda y DOM
+    // Actualizar la deuda y el DOM
     deuda = costoTotal - abonado;
-    idCostoTotal.innerHTML = costoTotal;
-    abonadoOutput.textContent = deuda;
+
     actualizarImpresionLista();
-    document.getElementById("cantidad__pedido").innerHTML = totalPrendasCantidad;
+    idCostoTotal.textContent = costoTotal.toFixed(2);
+    abonadoOutput.textContent = deuda.toFixed(2);
+    document.getElementById("cantidad__pedido").textContent = totalPrendasCantidad;
 };
 
-// Registrar abono y calcular deuda
 const printAbonado = () => {
-    const textInput = document.getElementById("abonadoInput").value;
-    const numericInput = textInput.replace(/\D/g, ""); // Filtrar solo números
+    const textInput = document.getElementById("abonadoInput").value.trim();
+    const numericInput = parseFloat(textInput);
 
-    if (costoTotal <= 0) {
-        abonadoOutput.textContent = "ERROR";
-    } else {
-        abonado = parseInt(numericInput) || 0;
-        deuda = costoTotal - abonado;
-        abonadoOutput.textContent = deuda;
+    if (isNaN(numericInput) || numericInput < 0) {
+        abonadoOutput.textContent = "ERROR: Abono inválido";
+        return;
     }
+
+    abonado = numericInput;
+    deuda = costoTotal - abonado;
+
+    abonadoOutput.textContent = deuda.toFixed(2);
 };
 
-// Reiniciar página
 const EliminarPedido = () => {
     if (confirm("¿Deseas realizar esta acción?")) {
         location.reload();
@@ -135,10 +124,7 @@ const EliminarPedido = () => {
 // ==========================
 // INICIALIZACIONES
 // ==========================
-
-// Inicializar botones
 imprimirBotones(prendas, "prendas");
 imprimirBotones(accesorios, "accesorios");
 
-// Inicializar contadores
-document.getElementById("cantidad__pedido").innerHTML = totalPrendasCantidad;
+document.getElementById("cantidad__pedido").textContent = totalPrendasCantidad;
