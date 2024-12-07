@@ -255,15 +255,15 @@ body {
 }
 .pedido__titulos .titulo__1 {
     width: 40%;
-    font-size: 10px;
+    font-size: 16px;
 }
 .pedido__titulos .titulo__2 {
     width: 30%;
-    font-size: 10px;
+    font-size: 14px;
 }
 .pedido__titulos .titulo__3 {
     width: 30%;
-    font-size: 10px;
+    font-size: 14px;
 }
 .pedido__costo__3cls {
     width: 100%;

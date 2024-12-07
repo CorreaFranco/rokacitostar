@@ -14,7 +14,6 @@ let deuda = 0; // Diferencia entre el costo total y el monto abonado
 
 // Contadores para estadísticas
 let totalPrendasCantidad = 0; // Total de unidades de prendas seleccionadas
-let totalTiposPrendas = 0; // Total de tipos diferentes de prendas seleccionadas
 
 // ==========================
 // FUNCIONES REUTILIZABLES
@@ -24,7 +23,7 @@ let totalTiposPrendas = 0; // Total de tipos diferentes de prendas seleccionadas
 const crearBoton = producto => {
     return `
     <button id="${producto.id}" class="boton__producto" onclick="pedirProductos(${producto.id})">
-        ${producto.title}: ${producto.price}
+        ${producto.title} ${producto.price}
     </button>
     `;
 };
@@ -69,7 +68,6 @@ const pedirProductos = id => {
                 // Si el producto no está en el pedido, agregarlo
                 pedido.push(element);
                 element.cantidad++;
-                totalTiposPrendas++; // Incrementar el total de tipos de prendas
                 totalPrendasCantidad++; // Incrementar el total de prendas
             } else {
                 // Si ya está, solo incrementar la cantidad
@@ -86,7 +84,6 @@ const pedirProductos = id => {
             idCostoTotal.innerHTML = costoTotal;
             abonadoOutput.textContent = deuda;
             document.getElementById("cantidad__pedido").innerHTML = totalPrendasCantidad;
-            document.getElementById("cantidad__tipo__prenda").innerHTML = totalTiposPrendas;
         }
     });
 };
@@ -99,7 +96,6 @@ const EliminarOrden = id => {
                 element.cantidad--;
                 totalPrendasCantidad--;
             } else {
-                totalTiposPrendas--;
                 totalPrendasCantidad--;
                 pedido.splice(index, 1); // Eliminar producto del array
             }
@@ -113,14 +109,6 @@ const EliminarOrden = id => {
     abonadoOutput.textContent = deuda;
     actualizarImpresionLista();
     document.getElementById("cantidad__pedido").innerHTML = totalPrendasCantidad;
-    document.getElementById("cantidad__tipo__prenda").innerHTML = totalTiposPrendas;
-};
-
-// Registrar el cliente
-const printCliente = () => {
-    const textInput = document.getElementById("textInput").value;
-    const output = document.getElementById("output");
-    output.textContent = textInput;
 };
 
 // Registrar abono y calcular deuda
@@ -154,11 +142,3 @@ imprimirBotones(accesorios, "accesorios");
 
 // Inicializar contadores
 document.getElementById("cantidad__pedido").innerHTML = totalPrendasCantidad;
-document.getElementById("cantidad__tipo__prenda").innerHTML = totalTiposPrendas;
-
-// Manejar impresión (requiere jQuery)
-$(document).ready(() => {
-    $('#imprimir').click(function() {
-        $.print('#contenido-a-imprimir');
-    });
-});
