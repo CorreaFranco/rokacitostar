@@ -128,3 +128,9 @@ imprimirBotones(prendas, "prendas");
 imprimirBotones(accesorios, "accesorios");
 
 document.getElementById("cantidad__pedido").textContent = totalPrendasCantidad;
+
+
+// IMPRIME LA PAGINA
+const Imprimir = () => {
+    window.print()
+}
