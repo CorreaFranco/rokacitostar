@@ -129,8 +129,28 @@ imprimirBotones(accesorios, "accesorios");
 
 document.getElementById("cantidad__pedido").textContent = totalPrendasCantidad;
 
-
-// IMPRIME LA PAGINA
-const Imprimir = () => {
-    window.print()
+// ==========================
+// MARCA DE AGUA
+// ==========================
+const marcaAgua = () => {
+    document.getElementById('imprimir').addEventListener('click', function() {
+        let section = document.getElementById('toggleSection');
+        if (section.classList.contains('hidden')) {
+            section.classList.remove('hidden');
+        } else {
+            section.classList.add('hidden');
+        }
+    });
 }
+
+// ==========================
+// BOTON DE IMPRESION
+// ==========================
+$(document).ready(() => {
+    marcaAgua()
+    let prueba = document.getElementById("prueba")
+    $('#imprimir').click(function() {
+        $.print('#contenido-a-imprimir');
+    });
+    marcaAgua()
+});
