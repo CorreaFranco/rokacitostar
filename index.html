@@ -15,6 +15,7 @@
         </div>
     </header>
     <main id="main">
+
         <div class="main__container">
             <section class="productos__main">
                 <div class="productos__container">
@@ -22,33 +23,47 @@
                         <h2>PRODUCTOSs</h2>
                     </div> -->
                     <div id="productos__tipos" class="productos__tipos">
+                        
                         <div class="productos__tipo">
-                            <h3 class="productos__title--tipos">PRENDAS</h3>
+                            <h3 class="productos__title--tipos"></h3>
                             <div id="prendas" class="productos__grid"></div>
                         </div class="productos__tipo">
+                        
                         <div class="productos__tipo">
                             <h3 class="productos__title--tipos">CALZADO</h3>
                             <div id="accesorios" class="productos__grid"></div>
                         </div>
                     </div>
                 </div>
+                
             </section>
 
             <section id="contenido-a-imprimir" class="productos__pedido">
+                <!-- MARCA DE AGUA -->
                 <div id="toggleSection" class="hidden">
                     <p class="hidden__content">ROKACITO STAR</p>
                 </div>
                 <div class="pedido__container">
-                    <div class="pedido__title">
-                        <div class="pedido__cliente">
-                            <p>PEDIDO</p>
-                            <div id="output">---</div>
-                        </div>
-                        <div class="pedido__cliente--boton">
-                            <input id="textInput"  type="text" name="textInput" placeholder="CLIENTE">
-                            <button onclick="printCliente()">Añadir cliente</button>
-                        </div>
+                    
+                <div class="pedido__title">
+                    <div class="pedido__cliente">
+                        <p>PEDIDO</p>
+                        <div id="output">---</div>
                     </div>
+                
+                    <div class="pedido__cliente--boton">
+                        <input id="textInput" type="text" name="textInput" placeholder="CLIENTE">
+                        <button onclick="printCliente()">Añadir cliente</button>
+                    </div>
+                </div>
+                
+                <script>
+                    function printCliente() {
+                        const cliente = document.getElementById("textInput").value;
+                        document.getElementById("output").textContent = cliente;
+                    }
+                </script>
+
                     <div class="pedido__lista">
                         <div id="lista__container--pedidos" class="lista__container--pedidos"></div>
                     </div>
@@ -95,12 +110,16 @@
                     <h2 class="medios__pago--tile">H BOSS E.I.R.L</h2>
                     <div class="medios__pago--tipe yape">
                         <p>YAPE</p>
-                        <input  type="text" name="medios__pago--inputNull--yape" placeholder="935 607 990">
+                        <input  type="text" name="medios__pago--inputNull--yape" placeholder="960 100 236">
                     </div>
-                    <div class="medios__pago--tipe plin">
+
+                    <!-- 
+                                        <div class="medios__pago--tipe plin">
                         <p class="medios__pago--plin">PLIN</p>
                         <input  type="text" name="medios__pago--inputNull--plin" placeholder="935 607 990">
                     </div>
+                    </div> -->
+
                     <div class="medios__pago--tipe--cuenta bcp">
                         <div class="cuenta__deposito">
                             <p class="cuenta__deposito--entidad">BCP:</p>
@@ -119,6 +138,16 @@
                         <div class="cuenta__deposito">
                             <p class="cuenta__deposito--entidad">CCI:</p>
                             <p class="cuenta__deposito--entidad--cii">011-484-00020043520-938</p>
+                        </div>
+                    </div>
+                    <div class="medios__pago--tipe--cuenta bbva">
+                        <div style="text-align: center;">
+                            <p ><em>Nota de venta</em></p>
+                            <p ><em>Canjear por boleta o factura</em></p>
+                        </div>
+                    </div>
+                    <div >
+                        <div class="header__container">
                         </div>
                     </div>
                 </div>
