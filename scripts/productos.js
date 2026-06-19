@@ -12,9 +12,9 @@ class Producto {
 let prendas = [];
 let accesorios = [];
 let nombresPrendas = [];
-let nombresAccesorios = ["Dúo 2x", "Dúo "];
+let nombresAccesorios = ["Dúo 2x", "Dúo ", "Dúo "];
 let preciosPrendas = [];
-let preciosAccesorios = [150, 99];
+let preciosAccesorios = [150, 99, 70];
 
 nombresPrendas.forEach((nombre, index) => {
     let id = (index + 1).toString(); // Los IDs empiezan en "1"
